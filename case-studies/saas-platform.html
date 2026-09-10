@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study: Acme SaaS Platform — a production-style Next.js, Postgres, Stripe and observability stack by Peer Nagar." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Acme SaaS Platform | Peer Nagar" />
+  <meta property="og:description" content="Architecture and engineering decisions behind a production-style SaaS monorepo with billing, idempotent webhooks and observability." />
+  <link rel="canonical" href="https://pearnagar.github.io/case-studies/saas-platform.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <title>Acme SaaS Platform | Case Study · Peer Nagar</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../case-study.css" />
+</head>
+<body class="case-body">
+  <a class="skip-link" href="#case-main">Skip to content</a>
+  <header class="case-topbar">
+    <div class="case-shell case-topbar-inner">
+      <a class="case-home" href="../index.html#projects">← Back to portfolio</a>
+      <a class="case-repo" href="https://github.com/pearnagar/SaaS_App" target="_blank" rel="noopener noreferrer">Repository <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="case-main" class="case-shell">
+    <section class="case-hero">
+      <p class="case-kicker">Case study · SaaS architecture & observability</p>
+      <h1>Acme SaaS Platform</h1>
+      <p class="case-summary">A production-style SaaS monorepo that treats authentication, billing, data consistency and observability as part of the product architecture instead of afterthoughts.</p>
+      <div class="case-stack" aria-label="Technology stack"><span>Next.js 15</span><span>TypeScript</span><span>PostgreSQL 17</span><span>Drizzle ORM</span><span>Auth.js</span><span>Stripe</span><span>Grafana</span><span>Loki</span><span>Promtail</span><span>Docker</span></div>
+    </section>
+
+    <section class="case-metrics" aria-label="Project highlights">
+      <div><strong>Signed</strong><span>Stripe webhook verification against the raw body</span></div>
+      <div><strong>Idempotent</strong><span>Webhook events deduplicated by event ID</span></div>
+      <div><strong>Structured</strong><span>JSON logging contract across mutations and API routes</span></div>
+    </section>
+
+    <section class="case-section" aria-labelledby="architecture-title">
+      <div class="case-section-heading">
+        <h2 id="architecture-title">Architecture</h2>
+        <p>The application is deliberately simple at the boundary — one Next.js app — but explicit about the backend concerns that matter: auth, transactional billing updates, database access and operational telemetry.</p>
+      </div>
+      <div class="architecture" tabindex="0" role="img" aria-label="Architecture diagram showing browser requests entering Next.js, Auth.js and application services using PostgreSQL, Stripe sending signed webhooks, and application logs flowing through Promtail to Loki and Grafana.">
+        <svg viewBox="0 0 1000 470" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#78ffd6"/></marker>
+            <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6fb9ff"/></marker>
+          </defs>
+          <rect class="node-blue" x="55" y="55" width="190" height="72" rx="14"/><text class="label" x="150" y="84">Browser</text><text class="sub" x="150" y="108">marketing · auth · dashboard</text>
+          <rect class="node-blue" x="390" y="45" width="230" height="92" rx="14"/><text class="label" x="505" y="79">Next.js App</text><text class="sub" x="505" y="104">routes · actions · services</text><text class="sub" x="505" y="122">Auth.js + structured logger</text>
+          <rect class="node" x="755" y="55" width="190" height="72" rx="14"/><text class="label" x="850" y="84">PostgreSQL</text><text class="sub" x="850" y="108">users · subscriptions · events</text>
+          <rect class="node-blue" x="55" y="235" width="190" height="72" rx="14"/><text class="label" x="150" y="264">Stripe</text><text class="sub" x="150" y="288">signed webhook delivery</text>
+          <rect class="node" x="390" y="225" width="230" height="92" rx="14"/><text class="label" x="505" y="258">Webhook Handler</text><text class="sub" x="505" y="282">verify · dedupe · transaction</text><text class="sub" x="505" y="300">update tier + subscription</text>
+          <rect class="node-blue" x="390" y="382" width="230" height="64" rx="14"/><text class="label" x="505" y="408">Promtail → Loki</text><text class="sub" x="505" y="429">single-line JSON logs</text>
+          <rect class="node" x="755" y="382" width="190" height="64" rx="14"/><text class="label" x="850" y="408">Grafana</text><text class="sub" x="850" y="429">SaaS Events dashboard</text>
+          <path class="arrow-blue" d="M245 91 L390 91"/>
+          <path class="arrow-blue" d="M620 91 L755 91"/>
+          <path class="arrow" d="M245 271 L390 271"/>
+          <path class="arrow" d="M620 271 C700 255 745 190 790 127"/>
+          <path class="arrow" d="M505 137 L505 225"/>
+          <path class="arrow" d="M505 317 L505 382"/>
+          <path class="arrow-blue" d="M620 414 L755 414"/>
+          <text class="sub" x="316" y="80">HTTPS</text>
+          <text class="sub" x="317" y="260">HMAC signed</text>
+          <text class="sub" x="676" y="220">transactional write</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="problem-title">
+      <div class="case-section-heading">
+        <h2 id="problem-title">The engineering problem</h2>
+        <p>A SaaS starter is easy to make look functional. The harder part is making the state transitions around authentication and billing deterministic, observable and safe to retry.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><span class="case-number">01 · WEBHOOK TRUST</span><h3>Verify before mutating</h3><p>Stripe webhook signatures are checked against the raw request body before any billing state is accepted. Tampered simulator events are expected to fail with HTTP 400.</p></article>
+        <article class="case-card"><span class="case-number">02 · IDEMPOTENCY</span><h3>Retries must be boring</h3><p>Incoming event IDs are persisted and deduplicated. Re-delivery of the same event does not repeat a subscription mutation.</p></article>
+        <article class="case-card"><span class="case-number">03 · CONSISTENCY</span><h3>Tier and subscription move together</h3><p>Webhook processing updates the relevant user tier and subscription records within a transaction so the dashboard does not observe half-completed billing state.</p></article>
+        <article class="case-card"><span class="case-number">04 · TELEMETRY</span><h3>Every important mutation leaves a signal</h3><p>API routes, webhooks and mutating server actions emit structured JSON with timestamp, level, event and request ID, while explicitly excluding secrets.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="decisions-title">
+      <div class="case-section-heading">
+        <h2 id="decisions-title">Key decisions</h2>
+        <p>The project emphasizes contracts: a contract for database access, a contract for logging, and a contract for handling external events.</p>
+      </div>
+      <div class="case-decisions">
+        <article class="decision"><strong>Database access through Drizzle</strong><p>The schema, client, migrations and seed data live in a dedicated package, keeping persistence concerns explicit and reusable across the monorepo.</p></article>
+        <article class="decision"><strong>Offline webhook simulation</strong><p>A local simulator signs payloads using the same HMAC model as Stripe. That makes success, downgrade and tamper scenarios testable without depending on a live Stripe listener.</p></article>
+        <article class="decision"><strong>Observability as a package</strong><p>Structured logging is centralized so event names and request context are consistent rather than reimplemented independently in each route.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="operations-title">
+      <div class="case-section-heading">
+        <h2 id="operations-title">Operational view</h2>
+        <p>The local observability path is intentionally complete enough to answer practical questions during a billing incident.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>What can be queried</h3><ul><li>Processed webhook events</li><li>Authentication events</li><li>Error-level application events</li><li>Context grouped by event name and level</li></ul></article>
+        <article class="case-card"><h3>What the rules protect</h3><ul><li>No secrets in logs</li><li>Strict TypeScript</li><li>Verified webhook signatures</li><li>Idempotent external event handling</li></ul></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="next-title">
+      <div class="case-section-heading">
+        <h2 id="next-title">What I would improve next</h2>
+        <p>The current stack is intentionally local-first. The next step would be turning the same contracts into production deployment guarantees.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>Async billing pipeline</h3><p>Introduce a durable queue between webhook acceptance and downstream processing so spikes and transient failures can be absorbed without coupling acknowledgement latency to business logic.</p></article>
+        <article class="case-card"><h3>SLOs, tracing and managed observability</h3><p>Add distributed traces, explicit latency/error SLOs and a managed log/metrics backend for a deployed environment, then validate those signals with failure injection.</p></article>
+      </div>
+    </section>
+
+    <section class="case-next">
+      <div><p>Next case study</p><a href="./epl-moneyball.html">EPL Moneyball AI →</a></div>
+      <a class="case-repo" href="../index.html#projects">All projects</a>
+    </section>
+  </main>
+
+  <footer class="case-footer"><div class="case-shell">Peer Nagar · SRE · Cloud Infrastructure · DevOps</div></footer>
+</body>
+</html>

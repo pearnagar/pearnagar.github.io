@@ -2,7 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pearnagar.github.io/</loc>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-09-10</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://pearnagar.github.io/case-studies/cs2-analytics.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pearnagar.github.io/case-studies/saas-platform.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pearnagar.github.io/case-studies/epl-moneyball.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

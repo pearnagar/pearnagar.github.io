@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study: EPL Moneyball AI — an end-to-end XGBoost football prediction and value-detection pipeline by Peer Nagar." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="EPL Moneyball AI | Peer Nagar" />
+  <meta property="og:description" content="Architecture and modeling decisions behind a football prediction pipeline combining historical data, engineered features and live odds." />
+  <link rel="canonical" href="https://pearnagar.github.io/case-studies/epl-moneyball.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <title>EPL Moneyball AI | Case Study · Peer Nagar</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../case-study.css" />
+</head>
+<body class="case-body">
+  <a class="skip-link" href="#case-main">Skip to content</a>
+  <header class="case-topbar">
+    <div class="case-shell case-topbar-inner">
+      <a class="case-home" href="../index.html#projects">← Back to portfolio</a>
+      <a class="case-repo" href="https://github.com/pearnagar/EPL-Match-Predictor" target="_blank" rel="noopener noreferrer">Repository <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="case-main" class="case-shell">
+    <section class="case-hero">
+      <p class="case-kicker">Case study · Machine learning & data pipeline</p>
+      <h1>EPL Moneyball AI</h1>
+      <p class="case-summary">An end-to-end machine-learning pipeline that turns five seasons of historical football data into engineered match features, trains an XGBoost model and combines live inference with bookmaker odds to surface probability gaps.</p>
+      <div class="case-stack" aria-label="Technology stack"><span>Python</span><span>Pandas</span><span>NumPy</span><span>XGBoost</span><span>Scikit-learn</span><span>The Odds API</span><span>Google Colab</span></div>
+    </section>
+
+    <section class="case-metrics" aria-label="Project highlights">
+      <div><strong>17K+</strong><span>historical matches processed</span></div>
+      <div><strong>54.08%</strong><span>unseen-test match-winner accuracy</span></div>
+      <div><strong>1.31</strong><span>reported goals MAE</span></div>
+    </section>
+
+    <section class="case-section" aria-labelledby="architecture-title">
+      <div class="case-section-heading">
+        <h2 id="architecture-title">Pipeline architecture</h2>
+        <p>The project separates historical learning from live inference: historical match data creates the feature space and model, while live odds and fixtures are injected only at prediction time.</p>
+      </div>
+      <div class="architecture" tabindex="0" role="img" aria-label="Architecture diagram showing historical football CSV data flowing through preprocessing and feature engineering into XGBoost training, while live odds flow into inference and a value filter before a final report.">
+        <svg viewBox="0 0 1000 430" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#78ffd6"/></marker>
+            <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6fb9ff"/></marker>
+          </defs>
+          <rect class="node-blue" x="45" y="65" width="190" height="72" rx="14"/><text class="label" x="140" y="94">Historical CSVs</text><text class="sub" x="140" y="118">5 EPL seasons</text>
+          <rect class="node" x="310" y="55" width="220" height="92" rx="14"/><text class="label" x="420" y="87">Feature Pipeline</text><text class="sub" x="420" y="111">rolling form · lags</text><text class="sub" x="420" y="129">interactions · time decay</text>
+          <rect class="node-blue" x="625" y="65" width="190" height="72" rx="14"/><text class="label" x="720" y="94">XGBoost</text><text class="sub" x="720" y="118">train + evaluate</text>
+          <rect class="node-blue" x="45" y="280" width="190" height="72" rx="14"/><text class="label" x="140" y="309">Live Odds API</text><text class="sub" x="140" y="333">fixtures + bookmaker odds</text>
+          <rect class="node" x="310" y="270" width="220" height="92" rx="14"/><text class="label" x="420" y="302">Live Inference</text><text class="sub" x="420" y="326">match features + odds</text><text class="sub" x="420" y="344">true-probability estimate</text>
+          <rect class="node" x="625" y="270" width="190" height="92" rx="14"/><text class="label" x="720" y="302">Value Filter</text><text class="sub" x="720" y="326">model probability</text><text class="sub" x="720" y="344">vs implied probability</text>
+          <rect class="node-blue" x="850" y="270" width="120" height="92" rx="14"/><text class="label" x="910" y="302">Report</text><text class="sub" x="910" y="326">winner</text><text class="sub" x="910" y="344">goals · gaps</text>
+          <path class="arrow-blue" d="M235 101 L310 101"/>
+          <path class="arrow" d="M530 101 L625 101"/>
+          <path class="arrow" d="M720 137 C720 190 540 205 465 270"/>
+          <path class="arrow-blue" d="M235 316 L310 316"/>
+          <path class="arrow" d="M530 316 L625 316"/>
+          <path class="arrow-blue" d="M815 316 L850 316"/>
+          <text class="sub" x="264" y="90">ingest</text>
+          <text class="sub" x="573" y="90">fit</text>
+          <text class="sub" x="573" y="305">compare</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="problem-title">
+      <div class="case-section-heading">
+        <h2 id="problem-title">The modeling problem</h2>
+        <p>Football is noisy and non-stationary. A useful model has to represent recent form without throwing away longer-term signal, and it must avoid treating raw team statistics as if every opponent or season were equivalent.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><span class="case-number">01 · RECENCY</span><h3>Recent matches matter more</h3><p>Training examples use time-decay weighting so newer seasons have more influence than older matches. The goal is to reflect current team strength without discarding history entirely.</p></article>
+        <article class="case-card"><span class="case-number">02 · FORM</span><h3>Turn sequences into features</h3><p>Rolling averages over recent matches capture momentum in points and goals. Lagged features ensure the model learns from information that would have been available before the fixture.</p></article>
+        <article class="case-card"><span class="case-number">03 · MATCHUP</span><h3>Model interactions, not isolated teams</h3><p>Interaction features compare one side’s attacking strength against the opponent’s defensive weakness, making the feature space matchup-aware rather than team-only.</p></article>
+        <article class="case-card"><span class="case-number">04 · MARKET CONTEXT</span><h3>Use odds as another signal</h3><p>Historical odds are used as market-sentiment features, and live odds are compared with model probabilities at inference time to expose differences between the two views.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="decisions-title">
+      <div class="case-section-heading">
+        <h2 id="decisions-title">Key decisions</h2>
+        <p>The value of the project is in the full data path, not only the classifier choice.</p>
+      </div>
+      <div class="case-decisions">
+        <article class="decision"><strong>Automated historical ingestion</strong><p>Each run can retrieve multiple seasons from football-data.co.uk, reducing dependence on a manually prepared local dataset and making the notebook easier to reproduce.</p></article>
+        <article class="decision"><strong>Secrets stay outside the notebook</strong><p>The Odds API key is designed to live in Google Colab Secrets rather than in source control, keeping live integrations separate from published code.</p></article>
+        <article class="decision"><strong>Explicit probability threshold</strong><p>The value-detection rule only flags a gap when the model probability exceeds the implied market probability by more than five percentage points.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="evaluation-title">
+      <div class="case-section-heading">
+        <h2 id="evaluation-title">Evaluation</h2>
+        <p>The repository reports model metrics on unseen test data and keeps match-winner classification separate from total-goals error.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>Match outcome</h3><p>The XGBoost classifier reports 54.08% accuracy on the unseen test set for Home / Draw / Away prediction.</p></article>
+        <article class="case-card"><h3>Total goals</h3><p>The goals model reports a mean absolute error of 1.31. That gives a separate error measure for the regression side instead of hiding it inside one headline metric.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="next-title">
+      <div class="case-section-heading">
+        <h2 id="next-title">What I would improve next</h2>
+        <p>The next iteration would focus less on adding features and more on making the evaluation harder to fool.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>Time-series validation & calibration</h3><p>Replace a single train/test view with rolling time-based validation and measure probability calibration with metrics such as Brier score and reliability curves.</p></article>
+        <article class="case-card"><h3>Experiment tracking & leakage guards</h3><p>Track feature sets, model versions and metrics across runs, and add explicit automated checks that every live feature is available strictly before kickoff.</p></article>
+      </div>
+    </section>
+
+    <section class="case-next">
+      <div><p>Back to the first case study</p><a href="./cs2-analytics.html">CS2 Analytics Engine →</a></div>
+      <a class="case-repo" href="../index.html#projects">All projects</a>
+    </section>
+  </main>
+
+  <footer class="case-footer"><div class="case-shell">Peer Nagar · SRE · Cloud Infrastructure · DevOps</div></footer>
+</body>
+</html>
