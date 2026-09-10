@@ -101,6 +101,7 @@ test('copy email provides accessible feedback', async ({ page, context }) => {
 });
 
 test('homepage has no serious axe violations', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter(v => ['serious', 'critical'].includes(v.impact));
@@ -108,6 +109,7 @@ test('homepage has no serious axe violations', async ({ page }) => {
 });
 
 test('case studies have no serious axe violations', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   for (const [path] of caseStudies) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
