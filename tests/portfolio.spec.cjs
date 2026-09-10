@@ -64,13 +64,16 @@ test('all same-origin homepage links resolve', async ({ page, request }) => {
 test('mobile navigation opens, closes, and keeps usable targets', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'mobile project only');
   await page.goto('/');
-  const toggle = page.getByRole('button', { name: /Open navigation/ });
+  const toggle = page.locator('.nav-toggle');
   await expect(toggle).toBeVisible();
+  await expect(toggle).toHaveAttribute('aria-label', 'Open navigation');
   await toggle.click();
   await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(toggle).toHaveAttribute('aria-label', 'Close navigation');
   await expect(page.getByRole('navigation', { name: 'Primary navigation' })).toHaveClass(/open/);
   await page.keyboard.press('Escape');
   await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(toggle).toHaveAttribute('aria-label', 'Open navigation');
   const box = await toggle.boundingBox();
   expect(box.width).toBeGreaterThanOrEqual(44);
   expect(box.height).toBeGreaterThanOrEqual(44);
