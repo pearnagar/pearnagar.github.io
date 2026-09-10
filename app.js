@@ -8,6 +8,7 @@
   const sections = [...document.querySelectorAll('main section[id]')];
   const copyButton = document.querySelector('.copy-email');
   const copyStatus = document.querySelector('.copy-status');
+  const mailLinks = [...document.querySelectorAll('a[href^="mailto:"]')];
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -54,6 +55,19 @@
 
     sections.forEach((section) => sectionObserver.observe(section));
   }
+
+  mailLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href') || '';
+      const email = href.replace(/^mailto:/i, '').split('?')[0];
+      if (!email) return;
+
+      event.preventDefault();
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent('Portfolio inquiry')}`;
+      const gmailTab = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      if (!gmailTab) window.location.href = gmailUrl;
+    });
+  });
 
   copyButton?.addEventListener('click', async () => {
     const email = copyButton.dataset.email;
