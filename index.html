@@ -15,6 +15,7 @@
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <title>Peer Nagar | SRE · Cloud · DevOps</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./enhancements.css" />
   <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
   {
@@ -22,7 +23,10 @@
     "@type": "Person",
     "name": "Peer Nagar",
     "url": "https://pearnagar.github.io/",
-    "sameAs": ["https://github.com/pearnagar"],
+    "sameAs": [
+      "https://github.com/pearnagar",
+      "https://www.linkedin.com/in/peer-nagar"
+    ],
     "jobTitle": "SRE and Cloud Infrastructure Engineer",
     "knowsAbout": ["Site Reliability Engineering", "DevOps", "Kubernetes", "Cloud Infrastructure", "CI/CD", "Observability", "Linux", "Python"]
   }
@@ -66,6 +70,8 @@
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
           <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary button-linkedin" href="https://www.linkedin.com/in/peer-nagar" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary button-cv" href="./assets/Peer_Nagar_CV.pdf" download>Download CV <span class="button-icon" aria-hidden="true">↓</span></a>
         </div>
 
         <dl class="metrics" aria-label="Career highlights">
@@ -106,7 +112,7 @@
         <p class="kicker">Selected work</p>
         <div class="heading-row">
           <h2 id="projects-title">Projects built like real systems.</h2>
-          <p>Not isolated demos: these projects emphasize delivery, operability, security and measurable behavior.</p>
+          <p>Not isolated demos: these projects emphasize delivery, operability, security and measurable behavior. The strongest projects now include engineering case studies.</p>
         </div>
       </div>
 
@@ -121,7 +127,10 @@
             <li>GitHub Actions with linting, container builds and Trivy scanning</li>
           </ul>
           <div class="stack" aria-label="Technology stack"><span>Kubernetes</span><span>Helm</span><span>FastAPI</span><span>Postgres</span><span>Prometheus</span><span>Grafana</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/CS2_Analytics" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <a class="project-link case-study-link" href="./case-studies/cs2-analytics.html">Read case study <span aria-hidden="true">→</span></a>
+            <a class="project-link" href="https://github.com/pearnagar/CS2_Analytics" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
 
         <article class="project-card">
@@ -134,7 +143,10 @@
             <li>Standalone Python LangGraph SRE agent</li>
           </ul>
           <div class="stack" aria-label="Technology stack"><span>Next.js</span><span>TypeScript</span><span>Postgres</span><span>Stripe</span><span>Loki</span><span>Docker</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/SaaS_App" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <a class="project-link case-study-link" href="./case-studies/saas-platform.html">Read case study <span aria-hidden="true">→</span></a>
+            <a class="project-link" href="https://github.com/pearnagar/SaaS_App" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
 
         <article class="project-card">
@@ -147,7 +159,10 @@
             <li>Rolling form, interaction features and time-decay weighting</li>
           </ul>
           <div class="stack" aria-label="Technology stack"><span>Python</span><span>Pandas</span><span>XGBoost</span><span>Scikit-learn</span><span>APIs</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/EPL-Match-Predictor" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <a class="project-link case-study-link" href="./case-studies/epl-moneyball.html">Read case study <span aria-hidden="true">→</span></a>
+            <a class="project-link" href="https://github.com/pearnagar/EPL-Match-Predictor" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
 
         <article class="project-card">
@@ -160,7 +175,9 @@
             <li>Vite-powered browser client</li>
           </ul>
           <div class="stack" aria-label="Technology stack"><span>TypeScript</span><span>Socket.IO</span><span>Express</span><span>Vite</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/kamisado_online" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/pearnagar/kamisado_online" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          </div>
         </article>
 
         <article class="project-card project-card-wide">
@@ -226,8 +243,9 @@
         <p>Let’s talk about the system you’re building — and what should become easier to operate.</p>
       </div>
       <div class="contact-actions">
-        <a class="button button-primary" href="mailto:pearnagar@gmail.com">Email me</a>
-        <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=pearnagar%40gmail.com" target="_blank" rel="noopener noreferrer">Email me <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="https://www.linkedin.com/in/peer-nagar" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="./assets/Peer_Nagar_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
         <button class="button button-ghost copy-email" type="button" data-email="pearnagar@gmail.com">Copy email</button>
         <p class="copy-status" role="status" aria-live="polite"></p>
       </div>
@@ -236,6 +254,7 @@
 
   <footer class="site-footer">
     <span>© <span id="year">2026</span> Peer Nagar</span>
+    <a class="build-proof" href="https://github.com/pearnagar/pearnagar.github.io/actions" target="_blank" rel="noopener noreferrer">CI validated · deployed with GitHub Actions</a>
     <a href="#top">Back to top ↑</a>
   </footer>
 

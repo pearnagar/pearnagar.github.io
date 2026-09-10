@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study: CS2 Analytics Engine — a Kubernetes, Helm, FastAPI, PostgreSQL, Prometheus and Grafana analytics platform by Peer Nagar." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="CS2 Analytics Engine | Peer Nagar" />
+  <meta property="og:description" content="Architecture and engineering decisions behind a production-style Kubernetes analytics stack." />
+  <link rel="canonical" href="https://pearnagar.github.io/case-studies/cs2-analytics.html" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <title>CS2 Analytics Engine | Case Study · Peer Nagar</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../case-study.css" />
+</head>
+<body class="case-body">
+  <a class="skip-link" href="#case-main">Skip to content</a>
+  <header class="case-topbar">
+    <div class="case-shell case-topbar-inner">
+      <a class="case-home" href="../index.html#projects">← Back to portfolio</a>
+      <a class="case-repo" href="https://github.com/pearnagar/CS2_Analytics" target="_blank" rel="noopener noreferrer">Repository <span>↗</span></a>
+    </div>
+  </header>
+
+  <main id="case-main" class="case-shell">
+    <section class="case-hero">
+      <p class="case-kicker">Case study · Platform engineering & observability</p>
+      <h1>CS2 Analytics Engine</h1>
+      <p class="case-summary">A compact production-style analytics platform that turns Steam market data into a scheduled data pipeline, API, browser dashboard and observable Kubernetes workload — packaged as one Helm release.</p>
+      <div class="case-stack" aria-label="Technology stack"><span>Kubernetes</span><span>Helm</span><span>FastAPI</span><span>PostgreSQL</span><span>Prometheus</span><span>Grafana</span><span>NGINX</span><span>GitHub Actions</span></div>
+    </section>
+
+    <section class="case-metrics" aria-label="Project highlights">
+      <div><strong>10 min</strong><span>Kubernetes CronJob collection interval</span></div>
+      <div><strong>1 release</strong><span>Helm package for the application stack</span></div>
+      <div><strong>3 services</strong><span>API, scraper and frontend container images</span></div>
+    </section>
+
+    <section class="case-section" aria-labelledby="architecture-title">
+      <div class="case-section-heading">
+        <h2 id="architecture-title">Architecture</h2>
+        <p>The design separates ingestion, persistence, serving and observability while keeping the developer experience simple enough to run locally on Minikube.</p>
+      </div>
+      <div class="architecture" role="img" aria-label="Architecture diagram showing Steam Market feeding a scheduled scraper, PostgreSQL storing market data, FastAPI serving data to an nginx frontend, and Prometheus feeding Grafana.">
+        <svg viewBox="0 0 1000 430" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#78ffd6"/></marker>
+            <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6fb9ff"/></marker>
+          </defs>
+          <rect class="node-blue" x="390" y="30" width="220" height="70" rx="14"/><text class="label" x="500" y="58">Steam Market</text><text class="sub" x="500" y="82">external price source</text>
+          <rect class="node" x="390" y="150" width="220" height="76" rx="14"/><text class="label" x="500" y="180">Scraper CronJob</text><text class="sub" x="500" y="204">transform + DB insert</text>
+          <rect class="node" x="85" y="282" width="210" height="76" rx="14"/><text class="label" x="190" y="312">PostgreSQL</text><text class="sub" x="190" y="336">StatefulSet · market_data</text>
+          <rect class="node-blue" x="395" y="282" width="210" height="76" rx="14"/><text class="label" x="500" y="312">FastAPI</text><text class="sub" x="500" y="336">stats · probes · metrics</text>
+          <rect class="node-blue" x="705" y="282" width="210" height="76" rx="14"/><text class="label" x="810" y="312">NGINX Frontend</text><text class="sub" x="810" y="336">dashboard + /api proxy</text>
+          <rect class="node" x="395" y="382" width="210" height="42" rx="12"/><text class="label" x="500" y="403">Prometheus → Grafana</text>
+          <path class="arrow-blue" d="M500 100 L500 150"/>
+          <path class="arrow" d="M442 226 C380 255 300 275 255 295"/>
+          <path class="arrow-blue" d="M295 320 L395 320"/>
+          <path class="arrow-blue" d="M605 320 L705 320"/>
+          <path class="arrow" d="M500 358 L500 382"/>
+          <text class="sub" x="334" y="260">writes every 10 min</text>
+          <text class="sub" x="346" y="308">SELECT</text>
+          <text class="sub" x="655" y="307">same-origin proxy</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="problem-title">
+      <div class="case-section-heading">
+        <h2 id="problem-title">The engineering problem</h2>
+        <p>The interesting part was not scraping a price endpoint. It was turning that simple task into a small system with deployment boundaries, health signals, secrets, ingress, persistence and repeatable delivery.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><span class="case-number">01 · INGESTION</span><h3>Scheduled, not always-on</h3><p>The scraper runs as a Kubernetes CronJob every ten minutes. That keeps the workload aligned with the task: short-lived collection jobs rather than a permanently running process.</p></article>
+        <article class="case-card"><span class="case-number">02 · PERSISTENCE</span><h3>State is explicit</h3><p>Market samples are stored in PostgreSQL as time-series rows. The database is deployed as a StatefulSet so persistence is treated differently from stateless services.</p></article>
+        <article class="case-card"><span class="case-number">03 · API BOUNDARY</span><h3>The browser never needs the API key</h3><p>The nginx frontend reverse-proxies <code>/api/*</code> to FastAPI. That gives the browser a same-origin path and avoids exposing the API credential to frontend JavaScript.</p></article>
+        <article class="case-card"><span class="case-number">04 · OPERABILITY</span><h3>Health and metrics are first-class</h3><p>The API exposes health, readiness and Prometheus metrics endpoints. Grafana sits on top of Prometheus so system behavior can be inspected instead of inferred.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="decisions-title">
+      <div class="case-section-heading">
+        <h2 id="decisions-title">Key decisions</h2>
+        <p>These are the choices that make the project read like infrastructure engineering rather than a collection of disconnected containers.</p>
+      </div>
+      <div class="case-decisions">
+        <article class="decision"><strong>One Helm release</strong><p>The API, scraper, frontend and application-side Kubernetes resources are templated under one chart, giving the stack one repeatable installation path.</p></article>
+        <article class="decision"><strong>Real ingress names locally</strong><p><code>sslip.io</code> hostnames encode the Minikube IP, removing the need for manual hosts-file edits while still exercising ingress routing.</p></article>
+        <article class="decision"><strong>Security in the container baseline</strong><p>Containers run non-root and use read-only root filesystems where feasible. CI also includes image scanning with Trivy before an image is considered releasable.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="delivery-title">
+      <div class="case-section-heading">
+        <h2 id="delivery-title">Delivery & failure signals</h2>
+        <p>The project deliberately includes the boring parts that become important the first time a deployment or dependency fails.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>CI checks</h3><ul><li>Dockerfile linting with Hadolint</li><li>Helm linting</li><li>Container builds per service</li><li>Trivy vulnerability scans</li></ul></article>
+        <article class="case-card"><h3>Runtime signals</h3><ul><li><code>/healthz</code> and <code>/readyz</code></li><li><code>/metrics</code> for Prometheus</li><li>Grafana visualization</li><li>Ingress endpoints for the app and monitoring surfaces</li></ul></article>
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="next-title">
+      <div class="case-section-heading">
+        <h2 id="next-title">What I would improve next</h2>
+        <p>A case study is more useful when it also shows where the current design stops.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card"><h3>Secrets</h3><p>Move deployment secrets from runtime overrides toward Sealed Secrets or an external secret manager so encrypted configuration can safely participate in GitOps.</p></article>
+        <article class="case-card"><h3>TLS & deployment automation</h3><p>Replace the local self-signed certificate with a trusted local flow and turn the currently disabled deployment stage into a tested promotion path.</p></article>
+      </div>
+    </section>
+
+    <section class="case-next">
+      <div><p>Next case study</p><a href="./saas-platform.html">Acme SaaS Platform →</a></div>
+      <a class="case-repo" href="../index.html#projects">All projects</a>
+    </section>
+  </main>
+
+  <footer class="case-footer"><div class="case-shell">Peer Nagar · SRE · Cloud Infrastructure · DevOps</div></footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* Portfolio v3 enhancements */
+.hero-actions { align-items: center; }
+.button-linkedin { border-color: rgba(111, 185, 255, .28); }
+.button-cv { border-color: rgba(120, 255, 214, .24); }
+.button .button-icon { font-size: 12px; opacity: .9; }
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.project-actions .project-link { margin-top: 0; }
+.project-link.case-study-link {
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 255, 214, .22);
+  background: rgba(120, 255, 214, .06);
+}
+.project-link.case-study-link:hover {
+  border-color: rgba(120, 255, 214, .45);
+  background: rgba(120, 255, 214, .1);
+}
+
+.build-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  background: rgba(255,255,255,.025);
+}
+.build-proof::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(120,255,214,.55);
+}
+
+@media (max-width: 760px) {
+  .hero-actions .button { flex: 1 1 calc(50% - 8px); }
+  .hero-actions .button-primary { flex-basis: 100%; }
+  .project-actions { gap: 12px; }
+  .project-actions .project-link { min-height: 44px; display: inline-flex; align-items: center; }
+}
+
+@media (max-width: 430px) {
+  .hero-actions .button { flex-basis: 100%; }
+}

@@ -1,7 +1,9 @@
-name: Deploy Portfolio to GitHub Pages
+name: Portfolio CI & Deploy
 
 on:
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
   workflow_dispatch:
 
@@ -11,11 +13,52 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: "portfolio-${{ github.ref }}"
   cancel-in-progress: true
 
 jobs:
+  qa:
+    name: QA gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install QA dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate HTML
+        run: npm run validate:html
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser, responsive and accessibility tests
+        run: npm run test:e2e
+
+      - name: Lighthouse quality budget
+        run: npm run test:lighthouse
+
+      - name: Upload QA reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-qa-${{ github.run_id }}
+          path: |
+            playwright-report/
+            .lighthouseci/
+          if-no-files-found: ignore
+          retention-days: 7
+
   deploy:
+    name: Deploy GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: qa
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
