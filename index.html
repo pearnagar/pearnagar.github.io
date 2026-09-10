@@ -3,217 +3,242 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Peer Nagar — SRE, Cloud Infrastructure and DevOps engineer portfolio." />
-  <meta name="theme-color" content="#08111f" />
+  <meta name="description" content="Peer Nagar — SRE, Cloud Infrastructure and DevOps engineer building reliable systems, automation and observability." />
+  <meta name="theme-color" content="#07111f" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Peer Nagar | SRE · Cloud · DevOps" />
+  <meta property="og:description" content="SRE and Cloud Infrastructure portfolio: automation, observability, Kubernetes, CI/CD and production engineering." />
+  <meta property="og:url" content="https://pearnagar.github.io/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://pearnagar.github.io/" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <title>Peer Nagar | SRE · Cloud · DevOps</title>
   <link rel="stylesheet" href="./styles.css" />
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Peer Nagar",
+    "url": "https://pearnagar.github.io/",
+    "sameAs": ["https://github.com/pearnagar"],
+    "jobTitle": "SRE and Cloud Infrastructure Engineer",
+    "knowsAbout": ["Site Reliability Engineering", "DevOps", "Kubernetes", "Cloud Infrastructure", "CI/CD", "Observability", "Linux", "Python"]
+  }
+  </script>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Peer Nagar home">
-      <span class="brand-mark">PN</span>
-      <span>Peer Nagar</span>
-    </a>
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="page-glow page-glow-a" aria-hidden="true"></div>
+  <div class="page-glow page-glow-b" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Peer Nagar — home">
+        <span class="brand-mark" aria-hidden="true">PN</span>
+        <span class="brand-copy"><strong>Peer Nagar</strong><small>SRE · Cloud · DevOps</small></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="top">
-    <section class="hero section reveal">
+  <main id="main-content">
+    <section class="hero section reveal" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> Open to Cloud Infrastructure · DevOps · SRE roles</div>
-        <h1>I build reliable systems,<br /><span>automate the repetitive</span><br />and make production observable.</h1>
+        <p class="availability"><span class="status-dot" aria-hidden="true"></span>Open to SRE · Cloud Infrastructure · DevOps opportunities</p>
+        <h1 id="hero-title">Reliable systems.<br /><span>Less manual work.</span><br />Clear production signals.</h1>
         <p class="hero-lead">
-          SRE &amp; Cloud-focused engineer with hands-on experience in CI/CD, automation, observability,
-          Linux infrastructure, security and data-driven engineering. B.Sc. in Applied Mathematics.
+          I’m Peer Nagar, an SRE and cloud-focused engineer with hands-on experience across CI/CD,
+          automation, observability, Linux infrastructure, security and data-heavy systems.
         </p>
+
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/pearnagar" target="_blank" rel="noreferrer">View GitHub</a>
-          <a class="button button-secondary" href="mailto:pearnagar@gmail.com">Get in touch</a>
+          <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
+          <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="metrics" aria-label="Portfolio highlights">
-          <div><strong>3 yrs</strong><span>SRE &amp; Professional Services</span></div>
-          <div><strong>5</strong><span>Featured engineering projects</span></div>
-          <div><strong>2</strong><span>Microsoft Azure certifications</span></div>
-        </div>
+
+        <dl class="metrics" aria-label="Career highlights">
+          <div><dt>3 years</dt><dd>SRE &amp; Professional Services</dd></div>
+          <div><dt>5 projects</dt><dd>Cloud, platform, data &amp; real-time systems</dd></div>
+          <div><dt>AZ-104 + AZ-900</dt><dd>Microsoft Azure certifications</dd></div>
+        </dl>
       </div>
 
-      <aside class="terminal-card" aria-label="Technical profile summary">
-        <div class="terminal-bar"><span></span><span></span><span></span><small>peer@portfolio:~</small></div>
-        <pre><code><span class="prompt">$</span> whoami
-Peer Nagar
+      <aside class="terminal-card" aria-label="Technical profile snapshot">
+        <div class="terminal-bar" aria-hidden="true">
+          <span></span><span></span><span></span><small>peer@portfolio:~</small>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> whoami</p>
+          <p class="terminal-output">Peer Nagar<br />SRE · Cloud Infrastructure · DevOps</p>
 
-<span class="prompt">$</span> cat focus.txt
-Cloud Infrastructure
-DevOps / SRE
-Automation
-Observability
-Security-minded engineering
+          <p><span class="prompt">$</span> cat principles.txt</p>
+          <p class="terminal-output">automate_repetition = true<br />measure_before_guessing = true<br />security_is_a_default = true</p>
 
-<span class="prompt">$</span> ls toolkit/
-Linux      Python      Bash
-Docker     Kubernetes  Helm
-AWS        Azure       Jenkins
-GitHub     Prometheus  Grafana
-Postgres   SQL         PowerShell
+          <p><span class="prompt">$</span> ls toolkit/</p>
+          <p class="terminal-output terminal-grid">Linux <span>Python</span> <span>Bash</span><br />Docker <span>Kubernetes</span> <span>Helm</span><br />AWS <span>Azure</span> <span>Jenkins</span><br />Prometheus <span>Grafana</span> <span>Postgres</span></p>
 
-<span class="prompt">$</span> echo $MINDSET
-"Measure. Automate. Improve."</code></pre>
+          <p><span class="prompt">$</span> uptime</p>
+          <p class="terminal-output"><span class="terminal-ok">●</span> learning continuously</p>
+        </div>
       </aside>
     </section>
 
-    <section id="projects" class="section reveal">
+    <section class="principles section section-tight reveal" aria-label="Engineering principles">
+      <div class="principle"><span>01</span><div><strong>Automate what repeats</strong><small>Turn operational toil into repeatable workflows.</small></div></div>
+      <div class="principle"><span>02</span><div><strong>Observe what matters</strong><small>Metrics and logs should accelerate decisions, not create noise.</small></div></div>
+      <div class="principle"><span>03</span><div><strong>Design for failure</strong><small>Healthy systems expect faults and make recovery boring.</small></div></div>
+    </section>
+
+    <section id="projects" class="section reveal" aria-labelledby="projects-title">
       <div class="section-heading">
         <p class="kicker">Selected work</p>
-        <h2>Projects that show how I think.</h2>
-        <p>Production-style builds across platform engineering, observability, full-stack systems and machine learning.</p>
+        <div class="heading-row">
+          <h2 id="projects-title">Projects built like real systems.</h2>
+          <p>Not isolated demos: these projects emphasize delivery, operability, security and measurable behavior.</p>
+        </div>
       </div>
 
       <div class="project-grid">
         <article class="project-card featured">
-          <div class="project-topline"><span class="project-number">01</span><span class="tag accent">Platform / Observability</span></div>
+          <div class="project-topline"><span class="project-number">01</span><span class="tag tag-accent">Platform · Observability</span></div>
           <h3>CS2 Analytics Engine</h3>
-          <p>
-            End-to-end analytics platform with a scheduled market scraper, FastAPI service, PostgreSQL,
-            static dashboard and a full monitoring stack. Packaged as a Helm release and designed for Kubernetes.
-          </p>
+          <p>A Kubernetes-packaged analytics platform that collects Steam market data, stores time-series records, serves an API and exposes the system through dashboards and alerts.</p>
           <ul class="impact-list">
-            <li>Prometheus + Grafana metrics and dashboards</li>
-            <li>GitHub Actions CI with linting, image builds and Trivy scans</li>
-            <li>Kubernetes CronJob, StatefulSet, Ingress, health/readiness probes</li>
+            <li>Single Helm release for application and platform components</li>
+            <li>Prometheus metrics, Grafana dashboards, health/readiness probes</li>
+            <li>GitHub Actions with linting, container builds and Trivy scanning</li>
           </ul>
-          <div class="stack"><span>Kubernetes</span><span>Helm</span><span>FastAPI</span><span>Postgres</span><span>Prometheus</span><span>Grafana</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/CS2_Analytics" target="_blank" rel="noreferrer">Explore repository <span>↗</span></a>
+          <div class="stack" aria-label="Technology stack"><span>Kubernetes</span><span>Helm</span><span>FastAPI</span><span>Postgres</span><span>Prometheus</span><span>Grafana</span></div>
+          <a class="project-link" href="https://github.com/pearnagar/CS2_Analytics" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="project-card">
           <div class="project-topline"><span class="project-number">02</span><span class="tag">Production SaaS</span></div>
           <h3>Acme SaaS Platform</h3>
-          <p>
-            Production-style SaaS monorepo with authentication, subscription billing, structured logging,
-            database migrations and a local observability pipeline.
-          </p>
+          <p>A production-style SaaS monorepo with authentication, subscription billing, database migrations and an explicit structured-logging contract.</p>
           <ul class="impact-list">
-            <li>Stripe webhook signature verification + idempotency</li>
-            <li>Grafana, Loki and Promtail observability</li>
+            <li>Verified and idempotent Stripe webhook processing</li>
+            <li>Grafana + Loki + Promtail observability pipeline</li>
             <li>Standalone Python LangGraph SRE agent</li>
           </ul>
-          <div class="stack"><span>Next.js</span><span>TypeScript</span><span>Postgres</span><span>Stripe</span><span>Loki</span><span>Docker</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/SaaS_App" target="_blank" rel="noreferrer">Explore repository <span>↗</span></a>
+          <div class="stack" aria-label="Technology stack"><span>Next.js</span><span>TypeScript</span><span>Postgres</span><span>Stripe</span><span>Loki</span><span>Docker</span></div>
+          <a class="project-link" href="https://github.com/pearnagar/SaaS_App" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="project-card">
           <div class="project-topline"><span class="project-number">03</span><span class="tag">Machine Learning</span></div>
           <h3>EPL Moneyball AI</h3>
-          <p>
-            End-to-end football prediction pipeline trained on five seasons of Premier League data,
-            combining rolling form, interaction features, time decay and live bookmaker odds.
-          </p>
+          <p>An end-to-end Premier League prediction pipeline combining historical results, feature engineering and live bookmaker odds to estimate match outcomes and detect value gaps.</p>
           <ul class="impact-list">
-            <li>17K+ historical matches processed</li>
+            <li>17K+ historical matches processed across five seasons</li>
             <li>XGBoost classifier with ~54.08% unseen-test accuracy</li>
-            <li>Automated value-detection logic against implied market probability</li>
+            <li>Rolling form, interaction features and time-decay weighting</li>
           </ul>
-          <div class="stack"><span>Python</span><span>Pandas</span><span>XGBoost</span><span>Scikit-learn</span><span>APIs</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/EPL-Match-Predictor" target="_blank" rel="noreferrer">Explore repository <span>↗</span></a>
+          <div class="stack" aria-label="Technology stack"><span>Python</span><span>Pandas</span><span>XGBoost</span><span>Scikit-learn</span><span>APIs</span></div>
+          <a class="project-link" href="https://github.com/pearnagar/EPL-Match-Predictor" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="project-card">
           <div class="project-topline"><span class="project-number">04</span><span class="tag">Real-time Systems</span></div>
           <h3>Kamisado Online</h3>
-          <p>
-            Real-time multiplayer implementation of the abstract strategy board game, structured as a
-            TypeScript monorepo with shared game logic and client/server packages.
-          </p>
+          <p>A real-time multiplayer implementation of the strategy board game, structured as a TypeScript monorepo with shared domain logic and client/server packages.</p>
           <ul class="impact-list">
             <li>Socket.IO real-time client/server communication</li>
-            <li>Express backend with shared TypeScript domain logic</li>
-            <li>Vite-powered web client</li>
+            <li>Express backend with shared TypeScript game logic</li>
+            <li>Vite-powered browser client</li>
           </ul>
-          <div class="stack"><span>TypeScript</span><span>Socket.IO</span><span>Express</span><span>Vite</span></div>
-          <a class="project-link" href="https://github.com/pearnagar/kamisado_online" target="_blank" rel="noreferrer">Explore repository <span>↗</span></a>
+          <div class="stack" aria-label="Technology stack"><span>TypeScript</span><span>Socket.IO</span><span>Express</span><span>Vite</span></div>
+          <a class="project-link" href="https://github.com/pearnagar/kamisado_online" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
         </article>
 
-        <article class="project-card compact-project">
-          <div class="project-topline"><span class="project-number">05</span><span class="tag private">Private project</span></div>
-          <h3>Management Chain — SQL + Python</h3>
-          <p>
-            Two independent solutions for traversing employee-manager hierarchies: a Recursive CTE in SQL
-            and a Python/Pandas implementation, with automated parity tests between both outputs.
-          </p>
-          <div class="stack"><span>Python</span><span>SQL</span><span>Recursive CTE</span><span>Pandas</span><span>Unit Tests</span></div>
+        <article class="project-card project-card-wide">
+          <div class="project-topline"><span class="project-number">05</span><span class="tag tag-private">Private · Algorithms</span></div>
+          <div class="wide-project-content">
+            <div>
+              <h3>Management Chain — SQL + Python</h3>
+              <p>Two independent implementations for traversing employee-manager hierarchies: a Recursive CTE and a Python/Pandas solution, backed by parity tests that compare both outputs.</p>
+            </div>
+            <div class="stack" aria-label="Technology stack"><span>Python</span><span>SQL</span><span>Recursive CTE</span><span>Pandas</span><span>Unit Tests</span></div>
+          </div>
         </article>
       </div>
     </section>
 
-    <section id="experience" class="section reveal">
-      <div class="section-heading split-heading">
-        <div><p class="kicker">Experience</p><h2>Built around ownership.</h2></div>
-        <p>I’m strongest where infrastructure, automation and production responsibility meet.</p>
+    <section id="experience" class="section reveal" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <p class="kicker">Experience</p>
+        <div class="heading-row"><h2 id="experience-title">Production ownership, end to end.</h2><p>My background connects platform operations, customer-facing delivery, automation and security.</p></div>
       </div>
 
       <div class="timeline">
         <article class="timeline-item">
-          <div class="timeline-date">2022 — 2025</div>
-          <div>
-            <h3>SRE &amp; Professional Services Engineer <span>· Cyberbit</span></h3>
-            <p>
-              Owned product delivery and hotfix deployments through automated CI/CD workflows; built automation
-              with Ansible, Python, Bash and PowerShell; created Prometheus alerts, Grafana dashboards and custom
-              exporters; optimized SQL for monitoring and reporting; administered VMware vSphere environments.
-            </p>
+          <div class="timeline-meta"><span>2022 — 2025</span><small>Cyberbit</small></div>
+          <div class="timeline-content">
+            <h3>SRE &amp; Professional Services Engineer</h3>
+            <p>Owned product delivery and hotfix deployment through automated CI/CD workflows, built operational automation in Ansible, Python, Bash and PowerShell, and improved production visibility with Prometheus alerts, Grafana dashboards and custom exporters.</p>
+            <div class="role-tags"><span>CI/CD</span><span>Automation</span><span>Observability</span><span>VMware</span><span>SQL</span></div>
           </div>
         </article>
+
         <article class="timeline-item">
-          <div class="timeline-date">2020 — 2022</div>
-          <div>
-            <h3>Information Security Manager <span>· IDF</span></h3>
-            <p>
-              Supervised security for classified networks, worked with digital certificates and web technologies,
-              and contributed to a security-services web project recognized with a certificate of appreciation.
-            </p>
+          <div class="timeline-meta"><span>2020 — 2022</span><small>IDF</small></div>
+          <div class="timeline-content">
+            <h3>Information Security Manager</h3>
+            <p>Supervised security for classified networks, worked with digital certificates and web technologies, and contributed to a security-services web project that received formal recognition.</p>
+            <div class="role-tags"><span>Network Security</span><span>PKI</span><span>Web</span><span>Operations</span></div>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="skills" class="section reveal">
+    <section id="skills" class="section reveal" aria-labelledby="skills-title">
       <div class="section-heading">
         <p class="kicker">Technical toolkit</p>
-        <h2>Systems first. Tools second.</h2>
+        <div class="heading-row"><h2 id="skills-title">A platform mindset across the stack.</h2><p>I choose tools for reliability and operational clarity, not for the logo wall.</p></div>
       </div>
+
       <div class="skills-grid">
-        <div class="skill-group"><h3>Platform &amp; Cloud</h3><p>Linux · AWS · Azure · Docker · Kubernetes · Helm · VMware vSphere</p></div>
-        <div class="skill-group"><h3>Automation &amp; Delivery</h3><p>Python · Bash · PowerShell · Ansible · Jenkins · GitHub Actions · CI/CD</p></div>
-        <div class="skill-group"><h3>Observability</h3><p>Prometheus · Grafana · Loki · structured logging · alerting · custom exporters</p></div>
-        <div class="skill-group"><h3>Data &amp; Backend</h3><p>SQL · PostgreSQL · FastAPI · Node.js · REST APIs · Pandas</p></div>
-        <div class="skill-group"><h3>Security</h3><p>Network security · certificates · secrets handling · image scanning · secure deployment practices</p></div>
-        <div class="skill-group"><h3>Education &amp; Certs</h3><p>B.Sc. Applied Mathematics, Bar-Ilan University · AZ-104 · AZ-900</p></div>
+        <article class="skill-group"><span class="skill-index">01</span><h3>Platform &amp; Cloud</h3><p>Linux · AWS · Azure · Docker · Kubernetes · Helm · VMware vSphere</p></article>
+        <article class="skill-group"><span class="skill-index">02</span><h3>Automation &amp; Delivery</h3><p>Python · Bash · PowerShell · Ansible · Jenkins · GitHub Actions · CI/CD</p></article>
+        <article class="skill-group"><span class="skill-index">03</span><h3>Observability</h3><p>Prometheus · Grafana · Loki · structured logging · alerting · custom exporters</p></article>
+        <article class="skill-group"><span class="skill-index">04</span><h3>Data &amp; Backend</h3><p>SQL · PostgreSQL · FastAPI · Node.js · REST APIs · Pandas</p></article>
+        <article class="skill-group"><span class="skill-index">05</span><h3>Security</h3><p>Network security · certificates · secrets handling · image scanning · secure deployment practices</p></article>
+        <article class="skill-group"><span class="skill-index">06</span><h3>Education &amp; Certifications</h3><p>B.Sc. Applied Mathematics, Bar-Ilan University · AZ-104 · AZ-900</p></article>
       </div>
     </section>
 
-    <section id="contact" class="section contact-section reveal">
+    <section id="contact" class="section contact-section reveal" aria-labelledby="contact-title">
       <div>
-        <p class="kicker">Let’s build something reliable</p>
-        <h2>Looking for an engineer who can connect infrastructure, automation and observability?</h2>
+        <p class="kicker">Contact</p>
+        <h2 id="contact-title">Need someone who can connect infrastructure, automation and observability?</h2>
+        <p>Let’s talk about the system you’re building — and what should become easier to operate.</p>
       </div>
       <div class="contact-actions">
-        <a class="button button-primary" href="mailto:pearnagar@gmail.com">pearnagar@gmail.com</a>
-        <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noreferrer">github.com/pearnagar</a>
+        <a class="button button-primary" href="mailto:pearnagar@gmail.com">Email me</a>
+        <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <button class="button button-ghost copy-email" type="button" data-email="pearnagar@gmail.com">Copy email</button>
+        <p class="copy-status" role="status" aria-live="polite"></p>
       </div>
     </section>
   </main>
 
-  <footer>
-    <span>Peer Nagar</span>
-    <span>Built as code, not a template · <span id="year"></span></span>
+  <footer class="site-footer">
+    <span>© <span id="year">2026</span> Peer Nagar</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 
-  <script src="./app.js"></script>
+  <script src="./app.js" defer></script>
 </body>
 </html>
