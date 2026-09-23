@@ -5,7 +5,7 @@
   "description": "Peer Nagar portfolio with automated HTML, browser, accessibility and Lighthouse QA.",
   "scripts": {
     "serve": "http-server . -p 4173 -c-1",
-    "validate:html": "html-validate index.html case-studies/*.html",
+    "validate:html": "html-validate index.html resume-ai-platform.html case-studies/*.html",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun",
     "qa": "npm run validate:html && npm run test:e2e && npm run test:lighthouse"
