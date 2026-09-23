@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Peer Nagar — AI Platform / SRE Engineer CV" />
+  <link rel="canonical" href="https://pearnagar.github.io/resume-ai-platform.html" />
+  <title>Peer Nagar | AI Platform / SRE Engineer CV</title>
+  <style>
+    :root{--ink:#10202b;--muted:#52616b;--accent:#164e63;--line:#d8e0e4;--paper:#fff;--bg:#eef3f5}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.42 Arial,Helvetica,sans-serif}
+    .toolbar{max-width:900px;margin:20px auto 0;display:flex;justify-content:space-between;align-items:center;padding:0 18px}
+    .toolbar a,.toolbar button{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:9px;text-decoration:none;cursor:pointer}
+    .toolbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+    main{max-width:900px;margin:14px auto 32px;background:var(--paper);padding:44px 52px;box-shadow:0 12px 40px rgba(22,78,99,.12)}
+    header{text-align:center;border-bottom:2px solid var(--accent);padding-bottom:16px}
+    h1{margin:0;font-size:34px;letter-spacing:.03em} .role{font-size:19px;color:var(--accent);font-weight:700;margin:4px 0 7px}
+    .contact{font-size:13px;color:var(--muted)} .contact a{color:inherit}
+    section{margin-top:18px} h2{font-size:15px;color:var(--accent);letter-spacing:.04em;margin:0 0 7px;text-transform:uppercase}
+    p{margin:3px 0 7px} .job{margin-top:9px}.job-head{display:flex;justify-content:space-between;gap:16px;font-weight:700}.job-head span:last-child{white-space:nowrap;color:var(--muted);font-weight:400}
+    ul{margin:5px 0 0;padding-left:20px} li{margin:2px 0}.skills strong{color:#111}.project-title{font-weight:700}
+    @media(max-width:700px){main{margin:0;padding:28px 22px;box-shadow:none}.toolbar{display:none}.job-head{display:block}.job-head span:last-child{display:block;margin-top:2px}}
+    @media print{body{background:#fff;font-size:11pt}.toolbar{display:none}main{box-shadow:none;margin:0;max-width:none;padding:10mm 12mm}section{margin-top:10px}h1{font-size:24pt}.role{font-size:13pt}a{color:inherit;text-decoration:none}}
+  </style>
+</head>
+<body>
+  <div class="toolbar"><a href="./index.html">← Portfolio</a><button type="button" onclick="window.print()">Print / Save as PDF</button></div>
+  <main>
+    <header>
+      <h1>PEER NAGAR</h1>
+      <div class="role">AI Platform / SRE Engineer</div>
+      <div class="contact">Rosh HaAyin, Israel · 052-5522037 · <a href="mailto:pearnagar@gmail.com">pearnagar@gmail.com</a> · <a href="https://pearnagar.github.io/">pearnagar.github.io</a> · <a href="https://github.com/pearnagar">github.com/pearnagar</a> · <a href="https://www.linkedin.com/in/peer-nagar">linkedin.com/in/peer-nagar</a></div>
+    </header>
+
+    <section>
+      <h2>Profile</h2>
+      <p>SRE and infrastructure engineer with 5+ years across production operations, cybersecurity and customer-facing delivery. Hands-on experience with CI/CD, observability, SQL, Linux and automation, plus recent agentic AI engineering using Python, LangGraph and Claude. Built an autonomous SRE agent that investigates production-style alerts through operational tools and performs bounded remediation with explicit safety controls.</p>
+    </section>
+
+    <section class="skills">
+      <h2>Core Skills</h2>
+      <p><strong>AI / Agents:</strong> LangGraph, Claude / Anthropic API, tool calling, agent state, retry guardrails, prompt engineering · <strong>Platform / SRE:</strong> Linux, AWS, Azure, Docker, Kubernetes, VMware, CI/CD, Jenkins, Ansible · <strong>Observability / Data:</strong> Prometheus, Grafana, Loki, ELK, SQL, PostgreSQL, MongoDB, RabbitMQ · <strong>Programming:</strong> Python, Bash, PowerShell, JavaScript</p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="job">
+        <div class="job-head"><span>Cyberbit — SRE &amp; Professional Services Engineer</span><span>Oct 2022 – Oct 2025</span></div>
+        <ul>
+          <li>Owned product delivery, weekly updates and hotfix deployment through automated CI/CD workflows in production environments.</li>
+          <li>Built operational automation and Jenkins jobs using Ansible, Python, Bash and PowerShell for reporting, monitoring and installation workflows.</li>
+          <li>Configured Prometheus alerts and Grafana dashboards and developed custom exporters to improve production visibility and troubleshooting.</li>
+          <li>Developed and optimized SQL queries for reporting, monitoring and dashboard integrations; administered and optimized VMware vSphere hosting environments.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-head"><span>IDF — Information Security Manager</span><span>Jan 2020 – Aug 2022</span></div>
+        <ul>
+          <li>Supervised security for classified networks and worked with digital certificates used across the organization.</li>
+          <li>Built and supported web-based security services using HTML, CSS, JavaScript and SharePoint; received formal recognition for a security-services project.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected AI / Platform Project</h2>
+      <p class="project-title">Autonomous SRE Agent — Python, LangGraph, Claude, FastAPI, Loki, Docker</p>
+      <ul>
+        <li>Built a tool-using incident investigation agent that receives production-style alerts over HTTP, gathers evidence and returns root-cause analysis.</li>
+        <li>Integrated operational tools for Loki log queries, Docker container restart remediation and signed Stripe webhook replay; the LLM selects tools dynamically rather than following a hardcoded runbook.</li>
+        <li>Added safety controls including a retry-capped agent loop and explicit API failure handling to constrain autonomous execution.</li>
+        <li>Integrated the agent with a production-style SaaS stack featuring PostgreSQL, structured logging, Grafana/Loki observability and idempotent webhook processing.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education &amp; Certifications</h2>
+      <p><strong>B.Sc. Applied Mathematics — Bar-Ilan University</strong> · 2023–2025</p>
+      <p><strong>Microsoft Azure:</strong> AZ-104 Azure Administrator, AZ-900 Azure Fundamentals · <strong>Languages:</strong> Hebrew, English</p>
+    </section>
+  </main>
+</body>
+</html>
