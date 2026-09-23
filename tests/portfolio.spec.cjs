@@ -2,17 +2,18 @@ const { test, expect } = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
 
 const caseStudies = [
-  ['/case-studies/cs2-analytics.html', 'CS2 Analytics Engine'],
+  ['/case-studies/ai-sre-agent.html', 'Autonomous SRE Agent'],
   ['/case-studies/saas-platform.html', 'Acme SaaS Platform'],
+  ['/case-studies/cs2-analytics.html', 'CS2 Analytics Engine'],
   ['/case-studies/epl-moneyball.html', 'EPL Moneyball AI']
 ];
 
 test('homepage exposes recruiter-critical actions', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/Peer Nagar/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable systems');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('AI-driven operations');
   await expect(page.getByRole('link', { name: /LinkedIn/ }).first()).toHaveAttribute('href', 'https://www.linkedin.com/in/peer-nagar');
-  await expect(page.getByRole('link', { name: /Download CV/ }).first()).toHaveAttribute('href', './assets/Peer_Nagar_CV.pdf');
+  await expect(page.getByRole('link', { name: /View tailored CV/ }).first()).toHaveAttribute('href', './resume-ai-platform.html');
   await expect(page.getByRole('link', { name: /Email me/ })).toHaveAttribute('href', /mail\.google\.com/);
 });
 
@@ -26,10 +27,11 @@ test('CV asset is publicly retrievable', async ({ request }) => {
 test('featured projects link to case studies', async ({ page }) => {
   await page.goto('/');
   const links = page.getByRole('link', { name: /Read case study/ });
-  await expect(links).toHaveCount(3);
-  await expect(links.nth(0)).toHaveAttribute('href', './case-studies/cs2-analytics.html');
+  await expect(links).toHaveCount(4);
+  await expect(links.nth(0)).toHaveAttribute('href', './case-studies/ai-sre-agent.html');
   await expect(links.nth(1)).toHaveAttribute('href', './case-studies/saas-platform.html');
-  await expect(links.nth(2)).toHaveAttribute('href', './case-studies/epl-moneyball.html');
+  await expect(links.nth(2)).toHaveAttribute('href', './case-studies/cs2-analytics.html');
+  await expect(links.nth(3)).toHaveAttribute('href', './case-studies/epl-moneyball.html');
 });
 
 for (const [path, title] of caseStudies) {
