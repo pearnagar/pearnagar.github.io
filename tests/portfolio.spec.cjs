@@ -11,10 +11,26 @@ const caseStudies = [
 test('homepage exposes recruiter-critical actions', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/Peer Nagar/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('AI-driven operations');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Reliable infrastructure');
   await expect(page.getByRole('link', { name: /LinkedIn/ }).first()).toHaveAttribute('href', 'https://www.linkedin.com/in/peer-nagar');
-  await expect(page.getByRole('link', { name: /View tailored CV/ }).first()).toHaveAttribute('href', './resume-ai-platform.html');
+  await expect(page.getByRole('link', { name: /View resume/ }).first()).toHaveAttribute('href', './resume.html');
   await expect(page.getByRole('link', { name: /Email me/ })).toHaveAttribute('href', /mail\.google\.com/);
+});
+
+test('updated resume page is available and aligned with current experience', async ({ page }) => {
+  const response = await page.goto('/resume.html');
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole('heading', { name: 'PEER NAGAR' })).toBeVisible();
+  await expect(page.getByText('API calls, JSON payloads', { exact: false })).toBeVisible();
+  await expect(page.getByText('SharePoint portal', { exact: false }).first()).toBeVisible();
+});
+
+test('new engineering projects are linked', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Kamisado Mobile' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'EKS Platform Lab' })).toBeVisible();
+  await expect(page.locator('a[href="https://github.com/pearnagar/kamisado"]')).toBeVisible();
+  await expect(page.locator('a[href="https://github.com/pearnagar/eks-platform-lab"]')).toBeVisible();
 });
 
 test('CV asset is publicly retrievable', async ({ request }) => {
