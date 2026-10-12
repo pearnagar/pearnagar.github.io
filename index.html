@@ -60,23 +60,23 @@
   <main id="main-content">
     <section class="hero section reveal" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="availability"><span class="status-dot" aria-hidden="true"></span>Open to AI Platform · SRE · Cloud Infrastructure opportunities</p>
-        <h1 id="hero-title">AI-driven operations.<br /><span>Less manual work.</span><br />Safer production systems.</h1>
+        <p class="availability"><span class="status-dot" aria-hidden="true"></span>Open to SRE · DevOps · Platform Engineering opportunities</p>
+        <h1 id="hero-title">Reliable infrastructure.<br /><span>Thoughtful automation.</span><br />Better production systems.</h1>
         <p class="hero-lead">
-          I’m Peer Nagar, an SRE engineer building AI-driven operational automation. I combine hands-on production experience across CI/CD, observability, Linux, SQL and infrastructure with agentic systems that investigate incidents, use tools and execute bounded remediation.
+          I’m Peer Nagar, an SRE and infrastructure engineer with hands-on experience in CI/CD, observability, automation, API integrations and enterprise web development. I build production-minded platforms, practical tools and AI-assisted workflows.
         </p>
 
         <div class="hero-actions">
           <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↓</span></a>
           <a class="button button-secondary" href="https://github.com/pearnagar" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
           <a class="button button-secondary button-linkedin" href="https://www.linkedin.com/in/peer-nagar" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary button-cv" href="./resume-ai-platform.html">View tailored CV <span class="button-icon" aria-hidden="true">↗</span></a>
+          <a class="button button-secondary button-cv" href="./resume.html">View resume <span class="button-icon" aria-hidden="true">↗</span></a>
         </div>
 
         <dl class="metrics" aria-label="Career highlights">
           <div><dt>3 years</dt><dd>SRE &amp; production engineering</dd></div>
           <div><dt>1 agentic system</dt><dd>Autonomous investigation &amp; remediation</dd></div>
-          <div><dt>5+ projects</dt><dd>AI, platform, cloud &amp; data systems</dd></div>
+          <div><dt>8 projects</dt><dd>AI, cloud, apps &amp; data systems</dd></div>
         </dl>
       </div>
 
@@ -110,8 +110,8 @@
       <div class="section-heading">
         <p class="kicker">Selected work</p>
         <div class="heading-row">
-          <h2 id="projects-title">From production signals to automated action.</h2>
-          <p>Projects focused on agentic operations, observability, delivery safety and production-style engineering. The AI work is integrated with real operational tools rather than isolated chat demos.</p>
+          <h2 id="projects-title">Engineering reliable systems across the stack.</h2>
+          <p>Selected hands-on work across SRE, DevOps, Kubernetes, enterprise integrations, machine learning and application engineering. Each project shows practical engineering decisions and implementation details.</p>
         </div>
       </div>
 
@@ -169,7 +169,7 @@
           <h3>EPL Moneyball AI</h3>
           <p>An end-to-end Premier League prediction pipeline combining historical results, feature engineering and bookmaker odds to estimate match outcomes and detect value gaps.</p>
           <ul class="impact-list">
-            <li>17K+ historical matches processed across five seasons</li>
+            <li>Automated ingestion of historical Premier League match data</li>
             <li>XGBoost classifier with ~54.08% unseen-test accuracy</li>
             <li>Rolling form, interaction features and time-decay weighting</li>
           </ul>
@@ -183,7 +183,7 @@
         <article class="project-card">
           <div class="project-topline"><span class="project-number">05</span><span class="tag">Real-time Systems</span></div>
           <h3>Kamisado Online</h3>
-          <p>A real-time multiplayer implementation of the strategy board game, structured as a TypeScript monorepo with shared domain logic and client/server packages.</p>
+          <p>A browser-based multiplayer board game with TypeScript client/server packages, room-based sessions and synchronized game state.</p>
           <ul class="impact-list">
             <li>Socket.IO real-time client/server communication</li>
             <li>Express backend with shared TypeScript game logic</li>
@@ -205,13 +205,42 @@
             <div class="stack" aria-label="Technology stack"><span>Python</span><span>SQL</span><span>Recursive CTE</span><span>Pandas</span><span>Unit Tests</span></div>
           </div>
         </article>
+        <article class="project-card">
+          <div class="project-topline"><span class="project-number">07</span><span class="tag">Mobile · Algorithms</span></div>
+          <h3>Kamisado Mobile</h3>
+          <p>A React Native board-game app with a pure TypeScript rules engine, local play, AI opponent, scoring modes and interactive mobile controls.</p>
+          <ul class="impact-list">
+            <li>Minimax AI with alpha-beta pruning and selectable difficulty</li>
+            <li>Move validation, deadlock and repetition handling in a testable engine</li>
+            <li>React Native / Expo UI with gestures, animations and chess clocks</li>
+          </ul>
+          <div class="stack" aria-label="Technology stack"><span>React Native</span><span>Expo</span><span>TypeScript</span><span>Algorithms</span><span>Jest</span></div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/pearnagar/kamisado" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-topline"><span class="project-number">08</span><span class="tag">Kubernetes · Infrastructure</span></div>
+          <h3>EKS Platform Lab</h3>
+          <p>A small Kubernetes infrastructure lab documenting application deployment, network routing and certificate management using declarative manifests.</p>
+          <ul class="impact-list">
+            <li>Deployment and Service manifests for a sample application</li>
+            <li>NGINX Ingress routing with TLS configuration</li>
+            <li>cert-manager ClusterIssuer and Grafana ingress definitions</li>
+          </ul>
+          <div class="stack" aria-label="Technology stack"><span>Kubernetes</span><span>NGINX Ingress</span><span>TLS</span><span>cert-manager</span></div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/pearnagar/eks-platform-lab" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
       </div>
     </section>
 
     <section id="experience" class="section reveal" aria-labelledby="experience-title">
       <div class="section-heading">
         <p class="kicker">Experience</p>
-        <div class="heading-row"><h2 id="experience-title">Production experience behind the agents.</h2><p>My AI work sits on top of hands-on SRE experience: delivery, automation, monitoring, SQL, infrastructure and customer-facing production environments.</p></div>
+        <div class="heading-row"><h2 id="experience-title">Production engineering and enterprise integration experience.</h2><p>Nearly six years across infrastructure, production delivery, observability, API/JSON integration and internal SharePoint development.</p></div>
       </div>
 
       <div class="timeline">
@@ -219,7 +248,7 @@
           <div class="timeline-meta"><span>2022 — 2025</span><small>Cyberbit</small></div>
           <div class="timeline-content">
             <h3>SRE &amp; Professional Services Engineer</h3>
-            <p>Owned product delivery and hotfix deployment through automated CI/CD workflows, built operational automation in Ansible, Python, Bash and PowerShell, improved production visibility with Prometheus alerts, Grafana dashboards and custom exporters, and developed SQL used for monitoring and reporting.</p>
+            <p>Owned CI/CD releases and hotfixes, built automation in Ansible, Python, Bash and PowerShell, improved observability using Prometheus, Grafana and exporters, and developed SQL plus API/JSON integrations between operational tools.</p>
             <div class="role-tags"><span>CI/CD</span><span>Automation</span><span>Observability</span><span>VMware</span><span>SQL</span></div>
           </div>
         </article>
@@ -228,7 +257,7 @@
           <div class="timeline-meta"><span>2020 — 2022</span><small>IDF</small></div>
           <div class="timeline-content">
             <h3>Information Security Manager</h3>
-            <p>Supervised security for classified networks, worked with digital certificates and web technologies, and contributed to a security-services web project that received formal recognition.</p>
+            <p>Supervised classified network security and digital certificates. Developed an internal SharePoint portal with HTML, CSS and JavaScript to centralize security services; received a certificate of appreciation for the project.</p>
             <div class="role-tags"><span>Network Security</span><span>PKI</span><span>Web</span><span>Operations</span></div>
           </div>
         </article>
@@ -238,15 +267,15 @@
     <section id="skills" class="section reveal" aria-labelledby="skills-title">
       <div class="section-heading">
         <p class="kicker">Technical toolkit</p>
-        <div class="heading-row"><h2 id="skills-title">AI agents grounded in platform engineering.</h2><p>The goal is not an LLM demo. It is an operational system with tools, observability, delivery controls and explicit safety boundaries.</p></div>
+        <div class="heading-row"><h2 id="skills-title">Tools for automation, platforms and integrations.</h2><p>Production operations and delivery fundamentals, combined with hands-on development of APIs, web applications, AI agents and automation.</p></div>
       </div>
 
       <div class="skills-grid">
-        <article class="skill-group"><span class="skill-index">01</span><h3>AI &amp; Agents</h3><p>LangGraph · Claude / Anthropic API · tool calling · agent state · retry guardrails · prompt engineering</p></article>
+        <article class="skill-group"><span class="skill-index">01</span><h3>AI &amp; Agents</h3><p>LangGraph · Claude / Anthropic API · tool calling · agent state · retry guardrails</p></article>
         <article class="skill-group"><span class="skill-index">02</span><h3>Automation &amp; Delivery</h3><p>Python · Bash · PowerShell · Ansible · Jenkins · GitHub Actions · CI/CD</p></article>
         <article class="skill-group"><span class="skill-index">03</span><h3>Observability</h3><p>Prometheus · Grafana · Loki · ELK · structured logging · alerting · custom exporters</p></article>
         <article class="skill-group"><span class="skill-index">04</span><h3>Platform &amp; Cloud</h3><p>Linux · AWS · Azure · Docker · Kubernetes · Helm · VMware vSphere</p></article>
-        <article class="skill-group"><span class="skill-index">05</span><h3>Data &amp; Backend</h3><p>SQL · PostgreSQL · MongoDB · RabbitMQ · FastAPI · Node.js · REST APIs · Pandas</p></article>
+        <article class="skill-group"><span class="skill-index">05</span><h3>Data &amp; Backend</h3><p>SQL · PostgreSQL · MongoDB · RabbitMQ · FastAPI · Node.js · REST APIs · JSON · SharePoint · HTML/CSS/JS</p></article>
         <article class="skill-group"><span class="skill-index">06</span><h3>Security &amp; Credentials</h3><p>Network security · certificates · secrets handling · image scanning · AZ-104 · AZ-900 · B.Sc. Applied Mathematics</p></article>
       </div>
     </section>
@@ -254,13 +283,13 @@
     <section id="contact" class="section contact-section reveal" aria-labelledby="contact-title">
       <div>
         <p class="kicker">Contact</p>
-        <h2 id="contact-title">Building AI systems that can operate real infrastructure?</h2>
-        <p>I’m interested in roles where production incidents become permanent automation: agents, tooling, observability and safer delivery controls.</p>
+        <h2 id="contact-title">Looking for someone who builds and operates reliable systems?</h2>
+        <p>I’m interested in SRE, DevOps, platform engineering and enterprise automation roles that combine reliable operations with useful software and integrations.</p>
       </div>
       <div class="contact-actions">
         <a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=pearnagar%40gmail.com" target="_blank" rel="noopener noreferrer">Email me <span aria-hidden="true">↗</span></a>
         <a class="button button-secondary" href="https://www.linkedin.com/in/peer-nagar" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-        <a class="button button-secondary" href="./resume-ai-platform.html">View tailored CV <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary" href="./resume.html">View resume <span aria-hidden="true">↗</span></a>
         <button class="button button-ghost copy-email" type="button" data-email="pearnagar@gmail.com">Copy email</button>
         <p class="copy-status" role="status" aria-live="polite"></p>
       </div>
